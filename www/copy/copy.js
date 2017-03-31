@@ -9,6 +9,25 @@
  */
 copy = function(object) {
 
-  // Your code here.
+  var newObject = {};
 
-};
+  for (var prop in object) {
+
+  	if (object.hasOwnProperty(prop)) {
+  		newObject[prop] = object[prop];
+  	}
+
+  }
+
+  return newObject;
+
+};/**/
+
+/**
+ * Copy 
+ * using ES6
+ * Will not work in ie
+ */
+/*copy = function(object) {
+	return Object.assign({}, object);
+}/**/

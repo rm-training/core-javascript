@@ -6,6 +6,15 @@
 // of arguments that could successfully be parsed as integers.
 Parse = function() {
 
-  // Your code here...
+  var args = Array.prototype.slice.call(arguments),
+  	validIntegersCount = 0;
+
+  for (var i=0; i<args.length; i++) {
+  	if (!isNaN(parseInt(args[i]))) {
+  		validIntegersCount++;
+  	}
+  }
+
+  return validIntegersCount;
 
 };
