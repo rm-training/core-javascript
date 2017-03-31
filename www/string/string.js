@@ -19,6 +19,16 @@
  */
 processString = function(input) {
 
-  // Your code here.
+  var today = new Date(),
+  	matches = input.match(/x/gi),
+  	count = 0;
+
+  input = input.replace(/today/i, today.toDateString());
+
+  input = input.replace(/pi/i, Math.PI.toFixed(2));
+
+  count = matches ? matches.length : 0;
+
+  return input + " " + count;
 
 };

@@ -65,6 +65,37 @@
  */
 (function() { // Keep this line.
 
-  // Your code here.
+  var bucketUl = document.getElementById('bucket'),
+  	newEl,
+  	newLi;
+
+  // flag 1
+  newEl = document.querySelector('li.foo');
+  bucketUl.appendChild(newEl);
+
+  // flag 2
+  newEl = document.querySelector('#articles p a span');
+  newLi = document.createElement('li');
+  bucketUl.appendChild(newLi.appendChild(newEl));
+
+  // flag 3
+  newEl = document.querySelector('.footer div div div div');
+  newLi = document.createElement('li');
+  bucketUl.appendChild(newLi.appendChild(newEl));
+
+  // flag 4
+  newEl = document.querySelector('#article-3 span');
+  newLi = document.createElement('li');
+  bucketUl.appendChild(newLi.appendChild(newEl));
+
+  // flag 5
+  // i cheated here (did I?) with a nth-child selector
+  // otherwise I have to walk it...or search an array...
+  //newEl = document.querySelector('#article-3 p:nth-child(4)');
+  
+  newEl = document.querySelectorAll('#article-3 p');
+  console.log(newEl);
+  newLi = document.createElement('li');
+  bucketUl.appendChild(newLi.appendChild(newEl[2]));
 
 })(); // Keep this line too.

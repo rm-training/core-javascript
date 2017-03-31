@@ -18,7 +18,20 @@ var users = [
 // DATA above that only includes users under the age of 18.
 function Exercise1() {
 
-  // Your code here.
+  var underAgeUsers = [];
+
+  for (var i=0; i<users.length; i++) {
+  	if (users[i].age < 18) {
+  		underAgeUsers.push(users[i]);
+  	}
+  }
+
+  // could also use ES5+ Array#filter
+  /*underAgeUsers = users.filter(function(val, index) {
+  	return val.age < 18;
+  });/**/
+
+  return underAgeUsers;
 
 }
 
@@ -30,7 +43,13 @@ function Exercise1() {
 // same order.
 function Exercise2() {
 
-  // Your code here.
+  var usernames = [];
+
+  for (var i=0; i<users.length; i++) {
+  	usernames.push(users[i].username);
+  }
+
+  return usernames;
 
 }
 
@@ -43,7 +62,15 @@ function Exercise2() {
 // over the age of 20 and younger than 40.
 function Exercise3() {
 
-  // Your code here.
+  var usernames = [];
+
+  for (var i=0; i<users.length; i++) {
+  	if (users[i].age > 20 && users[i].age < 40) {
+  		usernames.push(users[i].id.toString());
+  	}
+  }
+
+  return usernames;
 
 }
 
@@ -54,6 +81,16 @@ function Exercise3() {
 // DATA) in reverse order.  Do not use the built-in reverse function.
 function Exercise4() {
 
-  // Your code here.
+  var reversedArray = [];
+
+  for (var i=0; i<users.length; i++) {
+  	reversedArray.unshift(users[i]);
+  }
+
+  // ie5+, safe
+  // but cheating here ;)
+  // reversedArray = users.reverse();
+
+  return reversedArray;
 
 }
