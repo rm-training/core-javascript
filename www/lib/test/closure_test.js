@@ -1,4 +1,13 @@
 $(function() {
+  var globalsBefore = {};
+
+  // global may not always be window (shrug)
+  for (var key in window) {
+    if (window.hasOwnProperty(key)) {
+      globalsBefore[key] = window[key];
+    }
+  }
+
   var checks = [
     function(value, test) {
       test.assertInstanceOf(value, Function);
@@ -14,6 +23,13 @@ $(function() {
 
       test.assert(api.getTemp() === now,
                   "getTemp should return the value given to setTemp");
+
+      // check for leaky globals
+      for (var key in window) {
+        if (window.hasOwnProperty(key) && !(key in globalsBefore)) {
+          test.assert(false, "Your variable leaked into global space: " + key);
+        }
+      }
 
       return true;
     },
