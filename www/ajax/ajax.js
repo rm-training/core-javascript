@@ -26,6 +26,75 @@
 //
 (function() {
 
-  // Your code here.
+	var buttonEl = document.querySelector('button'),
+		artistsList = document.getElementById('artists'),
+		detailsEl = document.getElementById('details');
+
+	buttonEl.addEventListener('click', function(e) {
+
+		var req = new XMLHttpRequest();
+		
+		req.addEventListener('load', function(e) {
+			var data,
+				newEl;
+
+			console.log('Response', req.status, req.responseText);
+			
+			if (req.status == 200) {
+
+				data = JSON.parse(req.responseText);
+
+				for (var i=0; i<data.length; i++) {
+					// create new <li>
+					newLi = document.createElement('li'); 
+					newLi.appendChild(
+						document.createTextNode(data[i].name)
+					); 
+
+					// could also just use innerHTML to avoid textNode creation 
+					//newLi.innerHTML = data[i].name;
+
+					// BONUS #1:
+					// Wrapped in IIFE to protect scope and use data[i].id
+					(function(id){
+						newLi.addEventListener('click', function(e) {
+							showDetailsHandler(id);
+						});
+					})(data[i].id);
+
+					// @todo
+					// BONUS #2
+					
+					artistsList.appendChild(newLi);
+				}
+			}
+		});
+
+		req.open('GET', '/api/artists');
+		req.send(null);
+
+	});
+
+	// Bonus #1:
+	var showDetailsHandler = function(artistId) {
+
+		var detailsRequest = new XMLHttpRequest();
+
+		detailsRequest.addEventListener('load', function(e) {
+			var data;
+
+			if (detailsRequest.status == 200) {
+
+				data = JSON.parse(detailsRequest.responseText);
+				console.log(detailsRequest.responseText);
+
+			}
+
+		});
+
+		detailsRequest.open('GET', '/api/artists/' + artistId);
+		detailsRequest.send(null);
+
+	}
 
 })();

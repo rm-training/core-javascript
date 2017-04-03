@@ -65,7 +65,9 @@
  */
 (function() { // Keep this line.
 
-  var bucketUl = document.getElementById('bucket'),
+  var bucketUl = document
+      .getElementById('bucket')
+      .querySelector('ul'),
   	newEl,
   	newLi;
 
